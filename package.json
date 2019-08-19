@@ -124,6 +124,7 @@
     "test:err": "jake testerr",
     "test:fmt": "jake testfmt",
     "test:lang": "jake testlang",
+    "test:selenium": "jake testselenium",
     "update": "jake update"
   }
 }

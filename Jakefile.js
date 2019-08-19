@@ -100,6 +100,8 @@ setupTest('testpydecompiler', 'pydecompile-test', 'pydecompilerunner.js')
 setupTest('testpy', 'pyconverter-test', 'pyconvertrunner.js')
 setupTest('testtraces', 'runtime-trace-tests', 'tracerunner.js')
 setupTest('testtutorials', 'tutorial-test', 'tutorialrunner.js')
+setupTest('testselenium', 'ui-test', 'seleniumrunner.js')
+
 
 task('testpkgconflicts', ['built/pxt.js'], { async: true }, function () {
     cmdIn(this, "tests/pkgconflicts", 'node ../../built/pxt.js testpkgconflicts')
