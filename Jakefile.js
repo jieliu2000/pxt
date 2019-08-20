@@ -35,6 +35,8 @@ function loadText(filename) {
 
 function setupTest(taskName, testFolder, testFile) {
     task(taskName, ['built/tests/' + testFolder + '/runner.js'], { async: true }, function () {
+        console.debug(`task: ${taskName}; ${testFolder}; ${testFile}`)
+
         const args = " built/tests/" + testFolder + "/runner.js --reporter dot";
         if (os.platform() === "win32") {
             cmdIn(this, ".", path.resolve("node_modules/.bin/mocha.cmd") + args)
@@ -44,10 +46,13 @@ function setupTest(taskName, testFolder, testFile) {
         }
     })
 
+    console.debug(`testFolder: ${testFolder}, testFile: ${testFile}`)
     file("built/tests/" + testFolder + "/" + testFile, ['default'], { async: true }, function () {
+        console.debug(`tsc CMD in ${testFolder}; ${testFile}`)
         cmdIn(this, "tests/" + testFolder, 'node ../../node_modules/typescript/bin/tsc')
     });
 
+    console.debug(`Cat files in ${testFolder}; ${testFile}`)
     ju.catFiles('built/tests/' + testFolder + '/runner.js', [
         "node_modules/typescript/lib/typescript.js",
         "built/pxtlib.js",
